@@ -7,4 +7,5 @@ date: "2024-08-09"
 categories: ["Комедия", "Романтика", "Фантастика" ]
 image: "https://animakima.ru/public/images/pages/282-414/so-skukoy-pokoncheno-tv-1.webp"
 text: " Тестовый файл"
+
 ---
