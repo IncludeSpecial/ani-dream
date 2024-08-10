@@ -5,7 +5,7 @@ import Card from '~/components/Card.vue';
 const route = useRoute();
 const { data } = await useAsyncData('category-animes', () =>
     queryContent('/animes')
-        .where({ categories: { $contains: route.params.category } })
+        .where({ categoriesSlug: { $contains: route.params.category } })
         .find()
 );
 

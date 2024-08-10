@@ -14,31 +14,39 @@ const genres = ref<string[]>([]);
 
 const { data } = await useAsyncData<AnimeContent[]>('genres', () =>
     queryContent('/animes')
-        .only(['categories'])
+        .only(['categories', "categoriesSlug"])
         .find()
 );
 
-// Extract unique genres safely
 if (data.value) {
-  genres.value = [...new Set(data.value.flatMap((anime) => anime.categories || []))];
+  const genresMap = new Map<string, string>();
+  data.value.forEach((anime) => {
+    anime.categories.forEach((category, index) => {
+      const slug = anime.categoriesSlug[index];
+      if (!genresMap.has(category)) {
+        genresMap.set(category, slug);
+      }
+    });
+  });
+  genres.value = Array.from(genresMap).map(([name, slug]) => ({ name, slug }));
 }
 </script>
 
 <template>
-  <aside class="w-72 top-0 sticky p-4 h-full bg-foreground text-primary-foreground border-b-4 border-red-500 pb-4">
+  <aside class="flex flex-col w-72 top-0 sticky p-4 h-full bg-foreground text-primary-foreground border-b-4 border-red-500 pb-4">
     <!-- Genres Section -->
-    <div class="genres mb-8">
-      <div class="font-bold flex items-center gap-2 mb-4">
+    <div class="flex-col flex">
+      <NuxtLink to="/categories" class="font-bold items-center gap-2 mb-4">
         <Icon name="mdi:menu" size="16px"/>
         Жанры
-      </div>
-      <div class="flex flex-col">
-        <div class="genre-items flex flex-wrap justify-between gap-4 text-sm border-b-4 border-red-500 pb-4">
+      </NuxtLink>
+      <div>
+        <div class="flex-wrap flex justify-between gap-4 text-sm border-b-4 border-red-500 pb-4">
           <LeftSideBarItem
               v-for="genre in genres"
-              :key="genre"
-              :name="genre"
-              :link="`/categories/${genre}`"/>
+              :key="genre.slug"
+              :name="genre.name"
+              :link="`/categories/${genre.slug}`"/>
         </div>
       </div>
     </div>

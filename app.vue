@@ -6,6 +6,7 @@
 <template>
   <div class="bg-primary text-secondary">
     <NuxtLayout >
+      <NuxtLoadingIndicator/>
       <NuxtPage/>
     </NuxtLayout>
 

@@ -1,4 +1,4 @@
-<!--pages/animes/index.vue-->
+
 <script setup lang="ts">
 
 
@@ -8,8 +8,6 @@ const  data  = await queryContent('/animes')
     .only(['_path', 'title', 'slug' , 'description', 'date', 'categories', 'image'])
     .sort({ date: -1 })
     .find()
-
-
 
 useHead({
   title: "Аниме | Ani-Dream",
@@ -26,7 +24,7 @@ useHead({
   <div class="flex-col flex ">
 
     <h1 class="text-3xl font-bold mb-6">Аниме страница</h1>
-    <section class="grid grid-cols-4 gap-4 ">
+    <section class="grid grid-cols-1   sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-4  gap-4 ">
       <Card
           v-for="anime in data"
           :key="anime._path"

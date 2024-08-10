@@ -30,7 +30,7 @@ const props = defineProps({
       <div class="flex flex-wrap items-center  text-gray-500 ">
         <Icon name="mdi:label" class="text-lg mr-1"/>
         <template v-for="(category, index) in post.categories" :key="category">
-          <span class="text-sm">{{ category }}<span v-if="index < post.categories.length - 1">,</span></span>
+          <span class="text-sm">{{ category }}<span v-if="index < post.categories.length - 1">&nbsp; </span> </span>
         </template>
       </div>
       <div class="text-sm text-gray-500 flex items-center">
@@ -39,7 +39,6 @@ const props = defineProps({
       </div>
     </div>
 
-    <!-- Read More Button -->
     <NuxtLink
         :to="{name:'animes-anime', params:{anime: post.slug} }"
         class=" bg-yellow-500 text-gray-900 font-semibold text-center py-3 rounded-lg transition-all duration-300 hover:bg-yellow-600"

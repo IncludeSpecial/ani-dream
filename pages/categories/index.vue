@@ -1,4 +1,4 @@
-<!--pages/categories/index.vue-->
+
 <script setup lang="ts">
 
 const { data } = await useAsyncData('categories-list', () =>
@@ -29,4 +29,3 @@ const categories = computed(() => {
   </div>
 
 </template>
-

@@ -1,19 +1,19 @@
 <template>
 
   <NavigationBar/>
-  <div class="flex flex-col min-h-screen">
+  <div class="">
     <!-- Header -->
 
 
     <!-- Main Content Area -->
     <div class="flex flex-1 gap-4">
       <!-- Left Aside -->
-      <LeftSideBar/>
+      <left-side-bar class="lg:flex hidden"/>
       <!-- Main Content -->
-      <main class=" w-full p-4 ">
+      <main class=" w-full mx p-4 ">
         <slot/>
       </main>
-      <RightSideBar/>
+      <RightSideBar class="lg:flex  hidden"/>
 
     </div>
 
